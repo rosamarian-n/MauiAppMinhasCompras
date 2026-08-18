@@ -64,8 +64,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Properties\Helders\" />
-	  <Folder Include="Properties\Models\" />
+	  <MauiXaml Update="Resources\Views\EditarProduto.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Views\ListarProduto.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Views\NovoProduto.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
