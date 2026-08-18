@@ -1,4 +1,6 @@
-﻿namespace MauiAppMinhasCompras
+﻿using MauiAppMinhasCompras.Resources.Views;
+
+namespace MauiAppMinhasCompras
 {
     public partial class App : Application
     {
@@ -7,7 +9,9 @@
             InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new Views.ListaProduto());
+
+            MainPage = new NavigationPage(new ListarProduto());
         }
+
     }
 }
