@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MauiAppMinhasCompras.Models;
 using SQLite;
-using MauiAppMinhasCompras.Models;
 
 namespace MauiAppMinhasCompras.Properties.Helders
 {
@@ -32,16 +27,31 @@ namespace MauiAppMinhasCompras.Properties.Helders
         public Task<List<Produto>> Update(Produto p) 
         {
             string sql = "UPDATE Produto SET Descricao= ?, Quantidade= ?, Preco= ? WHERE Id= ?";
-            return _conn.QueryAsync<p>(
+            return _conn.QueryAsync<Produto>(
                 sql,p.Descricao, p.Quantidade, p.Preco, p.Id
                 );                
         }
 
-        public void Delete(int id) { }
+        public Task<int> Delete(int id) 
+        {
+            return _conn.Table<Produto>().DeleteAsync(i => i.Id == id);
+            //Table<Produto> retorna a tabela Produto do banco de dados
+            //(i => i.Id == id) é uma expressão lambda que representa a condição de exclusão, ou seja, excluir o registro cujo Id seja igual ao id passado como parâmetro
+            //Chama a tabela, cria a expressão delete e inclue todos os items da tabela com lambda
+        }
 
-        public void GetAll() { }
+        public Task<List<Produto>> GetAll() 
+        {
+           return _conn.Table<Produto>().ToListAsync();
+        }
         //lista de todos os produtos
 
-        public void Search(string q) { }
+        public Task<List<Produto>> Search(string q) 
+        { 
+            string sql = "SELECT * Produto WHERE descricao LIKE '%" + q + "%'"; 
+
+            return _conn.QueryAsync<Produto>(sql);
+            //Pesquisa no banco de dados todos os produtos que contenham a string q na descrição, usando o operador LIKE do SQL
+        }
     }
 }
