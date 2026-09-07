@@ -25,6 +25,7 @@ public partial class NovoProduto : ContentPage
 
 			await DisplayAlert("Sucesso", "Registro inserido com sucesso!", "OK");
             //Todo metodo que tem await assincrono, ou seja, ele não bloqueia a execução do código
+			await Navigation.PopAsync();
 
         }
         catch (Exception ex)
